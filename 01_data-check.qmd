@@ -1,0 +1,137 @@
+---
+# author:
+# - affiliation: Instituto Agroforestal Mediterráneo. Departamento de Ecosistemas Agroforestales.
+#   email: algarsal@upv.es
+#   name: Alfonso Garmendia
+title: Drip & drown
+subtitle: Navigating the plant stress
+title-block-banner: true
+date: last-modified
+date-format: iso
+lang: en-EN
+language: 
+  title-block-published: "Last modified"
+code-fold: true
+toc: true
+toc-location: body
+toc-depth: 6
+toc-title: Contents
+format:
+  html:
+    embed-resources: true
+    self-contained-math: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r include=FALSE}
+library(knitr)
+```
+
+## Import data
+
+```{r download, eval=!dir.exists("data")}
+# dir()
+# source("00a_data-download.R")
+# source("00b_data-bind.R")
+
+```
+
+If there are changes in the original Google-Drive data: 
+
+1. **_00a_data-download.R_** script should be run to download data. 2. **_00b_data-bind.R_** script should be run bind data in only one table.
+
+```{r}
+# dir("data", full.names = TRUE)
+load("data/bound-data.Rdata")
+```
+
+Bound data are loaded from the file **_data/bound-data.Rdata_**: `r ls(pattern = "b")`.
+
+- **datab** are the data from the plants, all years. 
+- **datesb** have the important dates. 
+- **legendb** have the legend to describe variables. 
+
+## Legend
+
+Final legend for unified data is in @tbl-legend.
+
+```{r tbl-legend}
+#| tbl-cap: Legend for unified data. 
+kable(legendb)
+```
+
+
+### Check variables names
+
+```{r}
+vn.data <- names(datab)
+vn.lege <- legendb$Variable
+```
+
+```{r legend-names}
+tf <- vn.data %in% vn.lege
+
+if (all(tf)) {
+  txt <- paste("OK, all variables names in data are included in the legend.")
+}
+if (!all(tf)) {
+  txt <- paste0("NOT ALL variables names in the data are included in the legend table: ",
+    paste(vn.data[!tf], collapse = ", "), ".")
+}
+
+tf <- vn.lege %in% vn.data
+
+if (all(tf)) {
+  txt2 <- paste("OK, all variables names in legend are included in the data.")
+}
+if (!all(tf)) {
+  txt2 <- paste0("NOT ALL variables names in the legend are included in the data table: **_",
+    paste(vn.lege[!tf], collapse = ", "), "_**.")
+}
+
+```
+
+`r txt`
+
+`r txt2`
+
+
+## Dates 
+
+Important dates from data of each year are in @tbl-dates
+
+```{r tbl-dates}
+#| tbl-cap: Important dates from data. 
+kable(datesb)
+```
+
+## Data
+
+Data table is in @tbl-data.
+
+```{r tbl-data}
+#| tbl-cap: First 10 observations from data table. 
+#| column: screen-inset
+kable(datab[1:10, ])
+```
+
+### Check data
+
+```{r}
+d <- datab
+year <- "bound table"
+# dir("rmd")
+```
+
+{{< include rmd/_factor-numeric.qmd >}}
+
+# {{< pagebreak >}}
+
+{{< include rmd/_reproducibility.qmd >}}
+
+
+```{r}
+knit_exit()
+```

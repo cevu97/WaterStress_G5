@@ -1,0 +1,82 @@
+
+Data from `r year` have 
+`r length(d[[1]])` observations from 
+`r length(d)` variables: *`r names(d)`*.
+
+#### Factor variables
+
+```{r }
+fv <-  # Factor variables
+  c("Group", "Week", "Date", "Species", "Use",
+    "Treatment", "Too_dry", "Mortality")
+
+txt <- ""
+for (i in fv) {
+  l <- levels(as.factor(d[[i]]))
+  na <- sum(is.na(d[[i]]))
+  txt <- paste(txt, "\n\n",
+    paste0("The **_", i, "_** variable has ", 
+      na, " missing values and ", 
+      length(l), " levels: ", 
+      paste(l, collapse = ", "), "."))
+}
+
+```
+
+There are 
+`r length(fv)` factor variables in 
+`r year` data, including *Date* (that is not exactly a factor): 
+*`r fv`*.
+
+`r txt`
+
+#### Numerical variables
+
+```{r }
+tf <- sapply(names(d), function(x) is.numeric(d[[x]]))
+nv <- names(d)[tf]
+
+txt <- ""
+for (i in nv) {
+  na <- sum(is.na(d[[i]]))
+  m <- min(d[[i]], na.rm = TRUE)
+  M <- max(d[[i]], na.rm = TRUE)
+  txt <- paste(txt, "\n\n",
+    paste0("The **_", i, "_** variable has ", 
+      na, " missing values and range from ", 
+      m, " to ", M, "."))
+}
+```
+
+There are `r length(nv)` numerical variables in 
+`r year` data: *`r nv`*.
+
+`r txt`
+
+### Sample size
+
+In the next table, check that all PlantID were measured every week. And only once:
+
+```{r}
+table(d$PlantId, d$Week)
+
+```
+
+
+### Comments
+
+```{r}
+tf <- is.na(d$Comments)
+if (all(tf)) 
+  txt <- paste0("There are NO comments in ", 
+    year, " data.")
+if (!all(tf)) 
+  txt <- paste0("There are ", sum(!tf), " comments in ", 
+    year, " data: ", 
+    paste(levels(as.factor(d$Comments)), 
+      collapse = ", "), ".")
+
+
+```
+
+`r txt`

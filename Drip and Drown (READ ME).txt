@@ -1,0 +1,58 @@
+1. Title.
+Drip and Drown
+
+2. Team members names
+Haseeb UR Rehman, VUk Scepovic, Feruzbek karimboev
+
+3. Introduction:
+Why Drip and Drown is interesting:
+Drip and Drown project explore how diverse plant species respond to water stress in changing climate and increasing water demand. The goal is to uncover adaptive mechanisms, shaping insights for sustainable agricultural practices crucial in addressing global food security challenges. While various studies have examined the responses of individual plant species to water stress, there exists a gap in comprehensive comparisons across diverse species under controlled conditions. This project aims to fill that gap, providing essential insights for adaptive strategies in agriculture and conservation.
+What is Already Known:
+Climate change due to anthropogenic activities is causing an increase in global temperature, resulting in significant water scarcity (IPCC, 2021). This changer in environmental pattern poses a critical challenge for sustaining agriculture and the health of ecosystems. The global population is expected to rise up to 9.7 billion by 2050 that intensifies the need for urgent development of sustainable water management strategies (WHO, 2020).
+The interconnection between climate change, rising temperatures, and the growing demand for water resources emphasizes the necessity for innovative agricultural approaches. A crucial part of tackling this challenge is understanding how different plant species respond to water stress, a key factor influencing future agricultural practices. The current experiment aims to unravel the adaptive mechanisms of both wild and cultivated plant species within controlled greenhouse conditions. (Milly et al., 2005)
+Examining parameters such as plant height, leaf characteristics, and biomass allocation under varying water conditions, this study contributes to the scientific understanding of plant-water interactions. This knowledge is crucial for crafting sustainable agricultural practices that optimize water use in the face of climate change-induced water scarcity (Jones et al., 2019) 
+As climate change continues to reshape environmental conditions, the knowledge gained from our experiment will provide useful insights to optimize agricultural productivity but also ensure food security for the growing global population. The experiment acts as a scientific cornerstone, providing essential data to adapt and innovate agriculture in a changing climate, aligning with the urgent call for enhanced water efficiency highlighted in projections for future water demand (Gleick, 2014).
+Objectives:
+1.	Investigate and analyze the impact of varying water stress levels on diverse plant species, both wild and cultivated, within controlled greenhouse conditions.
+2.	Evaluate the effects of water stress on key growth parameters, including plant height, leaf characteristics, and biomass allocation.
+3.	Contribute valuable data to inform the development of sustainable agricultural practices in the context of climate change-induced water scarcity.
+Hypothesis.
+1.	Enhanced water stress results in Significant changes in plant height, leaf characteristics, and biomass production.
+2.	Wild plant species will have distinct response/growth to varying levels of water stress than cultivated crops.
+3.	Cultivated and Wild Species produce similar aerial mass irrespective of the year grown in.
+
+
+4. Origin and Structure of the Data:
+The data originates from controlled experiments conducted in greenhouses during both 2022 and 2023, focusing on different species of wild plants and cultivated crop plants. In each year, the experiment comprises three distinct treatments, each involving five plants. The primary objective is to assess the impact of varying water stress levels on plant parameters.
+Experimental Design:
+Treatment Conditions:
+Treatment 1: Received the least water (1L/week).
+Treatment 2: Subjected to intermediate water levels (2L/week).
+Treatment 3: Provided with excessive water (3L/week).
+The experiment spanned a period of six weeks in both 2022 and 2023 for the parameters including Plant Height, Number of Leaves, Leaf Length, and Moisture Content and fresh and dry weight was measured at the end for both root and aerial part separately.
+
+Data Structure:
+The dataset is organized by treatment groups, plant species, and specific parameters. Time-series data is available, capturing weekly variations in plant parameters. The same experimental setup and data collection process were replicated in both 2022 and 2023.
+What Has Been Done:
+Calculate Mean Values:
+Computed the mean values for all parameters across different treatments.
+Summarized the average trends observed in plant height, leaf characteristics, and biomass allocation.
+Construct Tables and Plots:
+Organize the mean data into tables for each parameter.
+Create plots to visually represent the week-by-week changes in mean values.
+Utilize tables and plots to provide a comprehensive overview of the evolving trends in response to water stress.
+What We Will Do:
+ANOVA (Analysis of Variance):
+will conduct ANOVA to determine if there are significant differences among treatments.
+Use statistical analysis to evaluate variations in mean values and identify noteworthy differences.
+PCA (Principal Component Analysis):
+will perform PCA to understand the relationships among all variables concerning water stress.
+Reduce the dimensionality of the dataset to identify principal components contributing significantly to observed variability.
+Visualize and interpret the results to uncover patterns and structures in the data.
+
+References:
+- IPCC. (2021). Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on Climate Change. Cambridge University Press.
+- Milly, P. C. D., et al. (2005). Stationarity is dead: Whither water management? Science, 319(5863), 573–574.
+- Jones, H. G., et al. (2019). Plants in Action: Adaptation in Nature, Performance in Cultivation. Macmillan International Higher Education.
+- WHO. (2020). World Population Prospects 2019: Highlights. United Nations, Department of Economic and Social Affairs, Population Division.
+- Gleick, P. H. (2014). Water, Drought, Climate Change, and Conflict in Syria. Weather, Climate, and Society, 6(3), 331–340.

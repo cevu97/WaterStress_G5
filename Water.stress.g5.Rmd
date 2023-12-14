@@ -1,0 +1,241 @@
+---
+title: "Water Stress G5"
+author: "Group 5"
+date: "2023-12-14"
+output: html_document
+---
+
+ctrl + alt+ I for chunk
+
+```{r}
+#Library
+library(dplyr)
+library(tidyr)
+library(agricolae)
+library(ggplot2)
+```
+
+```{r}
+# Converting variables
+load("data/bound-data.Rdata")
+datab$Week1 <- as.factor(datab$Week)
+datab$Soil_humidity <-  as.numeric(datab$Soil_humidity)
+```
+
+```{r}
+#Soil humidity
+soilhumidity_mean <- datab %>%
+  filter(!is.na(Soil_humidity)) %>%
+  group_by(Species, Week, Treatment) %>%
+  summarise(soilhumidity_mean = mean(Soil_humidity))
+#plot
+ggplot(soilhumidity_mean, aes(x = Week, y = soilhumidity_mean, color = Treatment, group = Treatment, shape = Treatment)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_line(size = 1, alpha = 0.6) +
+  scale_color_manual(values = c("#66c2a5", "#fc8d62", "#8da0cb")) + 
+  facet_wrap(~Species, scales = "free_y")+  
+  labs(title = "Soil Humidity Mean",
+       x = "Week",
+       y = "Soil Humidity mean") +
+  theme_minimal() +
+  theme(legend.position = "top",
+        legend.box.background = element_rect(colour = "black"),
+        panel.grid.major = element_line(color = "lightgray"),
+        panel.grid.minor = element_line(color = "lightgray"),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black"))
+```
+
+```{r}
+# Plant height mean
+plantheight_mean <- datab %>%
+  group_by(Species, Week, Treatment) %>%
+  summarise(plantheight_mean = mean(Plant_height))
+#plot
+ggplot(plantheight_mean, aes(x = Week, y = plantheight_mean, color = Treatment, group = Treatment, shape = Treatment)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_line(size = 1, alpha = 0.6) +
+  facet_wrap(~Species, scales = "free_y") +
+  labs(title = "Plant Height Mean",
+       x = "Week",
+       y = "Plant Height Mean") +
+  scale_color_manual(values = c("#66c2a5", "#fc8d62", "#8da0cb")) +  
+  scale_shape_manual(values = c(16, 17, 19)) +  
+  theme_minimal() +
+  theme(legend.position = "top",
+        legend.box.background = element_rect(colour = "black"),
+        panel.grid.major = element_line(color = "lightgray"),
+        panel.grid.minor = element_line(color = "lightgray"),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black"))
+```
+
+```{r}
+#Leaf number
+leafnumber_mean <- datab %>%
+  group_by(Species, Week, Treatment) %>%
+  summarise(leafnumber_mean = mean(Leaf_number))
+#plot
+ggplot(leafnumber_mean, aes(x = Week, y = leafnumber_mean, color = Treatment, group = Treatment, shape = Treatment)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_line(size = 1, alpha = 0.6) +
+  facet_wrap(~Species, scales = "free_y") +
+  labs(title = "Leaf number Mean",
+       x = "Week",
+       y = "Leaf number mean") +
+  scale_color_manual(values = c("#66c2a5", "#fc8d62", "#8da0cb")) +  
+  scale_shape_manual(values = c(16, 17, 19)) +  
+  theme_minimal() +
+  theme(legend.position = "top",
+        legend.box.background = element_rect(colour = "black"),
+        panel.grid.major = element_line(color = "lightgray"),
+        panel.grid.minor = element_line(color = "lightgray"),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black"))
+
+```
+
+```{r}
+#Leaf length
+leaflength_mean <- datab %>%
+  group_by(Species, Week, Treatment) %>%
+  summarise(leaflength_mean = mean(Leaf_length))
+#plot
+ggplot(leaflength_mean, aes(x = Week, y = leaflength_mean, color = Treatment, group = Treatment, shape = Treatment)) +
+  geom_point(size = 2, alpha = 0.8) +
+  geom_line(size = 1, alpha = 0.6) +
+  facet_wrap(~Species, scales = "free_y") +
+  labs(title = "Leaf Length Mean",
+       x = "Week",
+       y = "Leaf length mean") +
+  scale_color_manual(values = c("#66c2a5", "#fc8d62", "#8da0cb")) +  
+  scale_shape_manual(values = c(16, 17, 19)) +  
+  theme_minimal() +
+  theme(legend.position = "top",
+        legend.box.background = element_rect(colour = "black"),
+        panel.grid.major = element_line(color = "lightgray"),
+        panel.grid.minor = element_line(color = "lightgray"),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black"))
+```
+
+```{r}
+#Chlorophyll_content
+chlorophyll_mean <- datab %>%
+  group_by(Species, Week, Treatment) %>%
+  summarise(chlorophyll_mean = mean(Chlorophyll_content))
+#plot
+ggplot(chlorophyll_mean, aes(x = Species, y = chlorophyll_mean, fill = Treatment, color = Treatment)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  labs(title = "Chlorophyll Content",
+       x = "Species",
+       y = "Chlorophyll Content") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  scale_fill_brewer(palette = "Set1") +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "top",
+        legend.box.background = element_rect(colour = "black"),
+        panel.grid.major = element_line(color = "lightgray"),
+        panel.grid.minor = element_line(color = "lightgray"),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black"))
+
+```
+
+```{r}
+#Aerial fresh weight
+afw_mean <- datab %>%
+  group_by(Species, Week, Treatment) %>%
+  summarise(afw_mean = mean(Aerial_fresh_weight))
+#plot
+ggplot(afw_mean, aes(x = Species, y = afw_mean, fill = Treatment, color = Treatment)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  labs(title = "Aerial fresh weight",
+       x = "Species",
+       y = "Aerial fresh weight") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  scale_fill_brewer(palette = "Set1") +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "top",
+        legend.box.background = element_rect(colour = "black"),
+        panel.grid.major = element_line(color = "lightgray"),
+        panel.grid.minor = element_line(color = "lightgray"),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black"))
+
+```
+
+```{r}
+#Aerial dry weight
+adw_mean <- datab %>%
+  group_by(Species, Week, Treatment) %>%
+  summarise(adw_mean = mean(Aerial_dry_weight))
+#plot
+ggplot(adw_mean, aes(x = Species, y = adw_mean, fill = Treatment, color = Treatment)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  labs(title = "Aerial dry weight",
+       x = "Species",
+       y = "Aerial dry weight") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  scale_fill_brewer(palette = "Set1") +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "top",
+        legend.box.background = element_rect(colour = "black"),
+        panel.grid.major = element_line(color = "lightgray"),
+        panel.grid.minor = element_line(color = "lightgray"),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black"))
+
+```
+
+```{r}
+# Roots fresh weight
+rfw_mean <- datab %>%
+  group_by(Species, Week, Treatment) %>%
+  summarise(rfw_mean = mean(Roots_fresh_weight))
+#plot
+ggplot(rfw_mean, aes(x = Species, y = rfw_mean, fill = Treatment, color = Treatment)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  labs(title = "Roots fresh weight",
+       x = "Species",
+       y = "Roots fresh weight") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  scale_fill_brewer(palette = "Set1") +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "top",
+        legend.box.background = element_rect(colour = "black"),
+        panel.grid.major = element_line(color = "lightgray"),
+        panel.grid.minor = element_line(color = "lightgray"),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black"))
+
+```
+
+```{r}
+# Roots dry weight
+rdw_mean <- datab %>%
+  group_by(Species, Week, Treatment) %>%
+  summarise(rdw_mean = mean(Roots_dry_weight))
+#plot
+ggplot(rdw_mean, aes(x = Species, y = rdw_mean, fill = Treatment, color = Treatment)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), width = 0.7) +
+  labs(title = "Roots dry weight",
+       x = "Species",
+       y = "Roots dry weight") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  scale_fill_brewer(palette = "Set1") +
+  scale_color_brewer(palette = "Set1") +
+  theme(legend.position = "top",
+        legend.box.background = element_rect(colour = "black"),
+        panel.grid.major = element_line(color = "lightgray"),
+        panel.grid.minor = element_line(color = "lightgray"),
+        panel.background = element_rect(fill = "white"),
+        axis.line = element_line(color = "black"))
+
+```
+
